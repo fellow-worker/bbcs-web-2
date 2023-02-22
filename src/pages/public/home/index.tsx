@@ -6,6 +6,7 @@ import Paragraph from 'components/Paragraph';
 import Jumbotron from 'components/Jumbotron';
 import Statement from 'components/Statement';
 import Block from 'components/Block';
+import Footer from 'components/Footer';
 
 export const Home = (): ReactElement => (
   <>
@@ -50,6 +51,8 @@ export const Home = (): ReactElement => (
     </Block>
 
     <Jumbotron fill="bible-study" header="Onze inzichten in blogs" />
+    <Block />
+    <Footer />
   </>
 );
 

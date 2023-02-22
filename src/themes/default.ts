@@ -12,5 +12,6 @@ export const defaultTheme: DefaultTheme = {
     large: 1512,
     medium: 1200,
     small: 800
-  }
+  },
+  maxWidth: 1200,
 };

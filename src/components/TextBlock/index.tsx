@@ -21,7 +21,7 @@ const Container = styled.div`
 const Text = styled.div<Props>`
   column-gap: 100px;
   column-count: ${p => p.columns ?? 2};
-  max-width: 1050px;
+  max-width: ${p => p.theme.maxWidth}px;
   padding: 0 50px;
 
   p:first-child {

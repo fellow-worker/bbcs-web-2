@@ -15,7 +15,7 @@ const Container = styled.div`
 `;
 
 const Box = styled.div`
-  max-width: 1050px;
+  max-width: ${p => p.theme.maxWidth}px;
   padding: 0 50px;
 `;
 
