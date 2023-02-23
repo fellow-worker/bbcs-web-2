@@ -5,6 +5,7 @@ import { Routing } from 'pages/Routing';
 import { BrowserRouter } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import { defaultTheme } from 'themes/default';
+import ConfigProvider from 'context/ConfigProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -35,16 +36,18 @@ const Container = styled.div`
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={defaultTheme}>
-      <Container>
-        <Spacer />
-        <Boxed>
-          <BrowserRouter>
-            <Routing />
-          </BrowserRouter>
-        </Boxed>
-        <Spacer />
-      </Container>
-    </ThemeProvider>
+    <ConfigProvider>
+      <ThemeProvider theme={defaultTheme}>
+        <Container>
+          <Spacer />
+          <Boxed>
+            <BrowserRouter>
+              <Routing />
+            </BrowserRouter>
+          </Boxed>
+          <Spacer />
+        </Container>
+      </ThemeProvider>
+    </ConfigProvider>
   </React.StrictMode>
 );

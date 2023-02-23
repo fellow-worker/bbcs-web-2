@@ -4,6 +4,8 @@ import React, { FC, PropsWithChildren } from 'react';
 export interface TextProps {
   color?: 'text' | 'green' | 'blue',
   variant?: 'h1' | 'h2' | 'h3' | 'p'
+  bold?: boolean
+  center?: boolean
 }
 
 const Text: FC<PropsWithChildren<TextProps>> = (props) => {
@@ -29,7 +31,7 @@ const Headers = css<TextProps>`
 const H1 = styled.h1<TextProps>`
   ${Headers};
   font-size: 50px;
-  margin: 75px 0;
+  margin: 65px 0;
 `;
 
 const H2 = styled.h2<TextProps>`
@@ -43,10 +45,12 @@ const H3 = styled.h3<TextProps>`
 `;
 
 const P = styled.p<TextProps>`
-  font-weight: 300;
+  font-weight: ${p => (p.bold ? 'bold' : 300)};
   color: ${p => p.theme.colors[p.color ?? 'text']};
   line-height: 24px;
   letter-spacing: 0.1px;
+  text-align: ${p => (p.center ? 'center' : 'left')};
+
 `;
 
 export default Text;
