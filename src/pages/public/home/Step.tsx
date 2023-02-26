@@ -1,6 +1,5 @@
 import React, { FC, PropsWithChildren } from 'react';
 import styled from 'styled-components';
-import Paragraph from 'components/Paragraph';
 import Text from 'components/Text';
 
 interface Props {
@@ -20,7 +19,7 @@ const Step: FC<PropsWithChildren<Props>> = (props) => {
       <Text variant="p" color="blue" bold>
         {header}
       </Text>
-      <Paragraph>{children}</Paragraph>
+      {children}
     </Container>
   );
 };

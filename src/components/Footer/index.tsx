@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useConfig from 'hooks/useConfig';
 
 const Footer = () => {
   const year = new Date().getFullYear();
+  const config = useConfig();
   return (
     <Container>
       <Box>
         <div>
-          © 2011-{year} bijbelcursussen.nl, Alle rechten voorbehouden.
+          © 2011-{year} {config.name}, Alle rechten voorbehouden.
         </div>
         <div>
           <Link to="/info/gebruikersvoorwaarden">Gebruikersvoorwaarden</Link>

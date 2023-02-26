@@ -3,11 +3,14 @@ import React from 'react';
 import Columns, { Column } from 'components/Columns';
 import Step from 'pages/public/home/Step';
 import Block from 'components/Block';
+import Button from 'components/Button';
+import Center from 'components/Center';
+import styled from 'styled-components';
 
 const Instructions = () => (
-  <Block>
+  <Block paddingTop={false}>
     <Text variant="h1">Hoe het werkt</Text>
-    <Columns>
+    <Columns count={3}>
       <Column>
         <Step header="Kies een cursus en meld je aan" icon="register">
           <Text>
@@ -24,6 +27,10 @@ const Instructions = () => (
             Elke tiener zou dit moeten snappen en niet alleen een hoog
             leraar. Let dus ook echt op jullie woordgebruik.
           </Text>
+          <Spacer />
+          <Center>
+            <Button label="Meld je gratis aan" href="/register" color="green" />
+          </Center>
         </Step>
       </Column>
       <Column>
@@ -38,5 +45,9 @@ const Instructions = () => (
     </Columns>
   </Block>
 );
+
+const Spacer = styled.div`
+  height: 50px;
+`;
 
 export default Instructions;

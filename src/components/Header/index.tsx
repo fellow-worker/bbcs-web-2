@@ -5,6 +5,7 @@ import Logo from './Logo';
 import NavItem from './Menu';
 import getImage, { Image } from './images';
 import menuItems from './menuItems';
+import SocialMedia from './SocialMedia';
 
 interface Props {
   condensed?: boolean,
@@ -37,21 +38,24 @@ const BaseHeader = (props: Props): ReactElement => {
         <Spacer />
         {menuItems.map(m => <NavItem key={m.id} {...m} />)}
       </NavBar>
+      <SocialMedia condensed={condensed} />
     </Container>
   );
 };
 
 const Container = styled.div<{ image: Image } & Props>`
-  width: 100%;
   height: ${p => (p.condensed !== true ? 736 : 516)}px;
   background-image: url('/images/headers/${p => p.image.src}');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: ${p => p.image.position};
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const NavBar = styled.nav`
   height: 148px;
+  width: 100%;
   display: flex;
 `;
 

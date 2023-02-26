@@ -2,7 +2,7 @@ import React, { FC, PropsWithChildren } from 'react';
 import Text from 'components/Text';
 
 export interface ParagraphProps {
-  color?: 'text' | 'green' | 'blue',
+  color?: 'text' | 'green' | 'blue' | 'background',
 }
 
 const Paragraph: FC<PropsWithChildren<ParagraphProps>> = (props) => {

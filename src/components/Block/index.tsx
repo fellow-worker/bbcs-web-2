@@ -1,17 +1,29 @@
 import styled from 'styled-components';
 import React, { FC, PropsWithChildren } from 'react';
 
-const Block: FC<PropsWithChildren> = ({ children }) => (
-  <Container>
-    <Box>{children}</Box>
-  </Container>
-);
+interface BlockProps {
+  paddingTop?: boolean
+  paddingBottom?: boolean
+  padding?: boolean
+}
 
-const Container = styled.div`
+const Block: FC<PropsWithChildren<BlockProps>> = (props) => {
+  const { children, padding, paddingBottom, paddingTop } = props;
+  const padTop = !(padding === false || paddingTop === false);
+  const padBottom = !(padding === false || paddingBottom === false);
+  return (
+    <Container padTop={padTop} padBottom={padBottom}>
+      <Box>{children}</Box>
+    </Container>
+  );
+};
+
+const Container = styled.div<{ padBottom: boolean, padTop: boolean }>`
   display: flex;
   justify-content: center;
   justify-items: center;
-  padding-bottom: 75px;
+  padding-bottom: ${p => (p.padBottom ? 75 : 0)}px;
+  padding-top: ${p => (p.padTop ? 75 : 0)}px;
 `;
 
 const Box = styled.div`
