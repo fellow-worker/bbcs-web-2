@@ -19,8 +19,7 @@ const Container = styled.div`
 `;
 
 const Text = styled.div<Props>`
-  column-gap: 100px;
-  column-count: ${p => p.columns ?? 2};
+
   max-width: ${p => p.theme.maxWidth}px;
   padding: 0 50px;
 
@@ -28,6 +27,12 @@ const Text = styled.div<Props>`
     padding-top: 0;
     margin-top: 0;
   }
+
+  @media (min-width: ${p => p.theme.screens.small}px) {
+    column-gap: 60px;
+    column-count: ${p => p.columns ?? 2};
+  }
+
 `;
 
 export default TextBlock;

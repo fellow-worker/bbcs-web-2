@@ -7,6 +7,7 @@ export interface TextProps {
   bold?: boolean
   center?: boolean
   margin?: number
+  justify? : boolean
 }
 
 const Text: FC<PropsWithChildren<TextProps>> = (props) => {
@@ -60,14 +61,25 @@ const H5 = styled.h5<TextProps>`
   letter-spacing: 0.1px;
 `;
 
+const getTextAlign = (style : TextProps) => {
+  const { center, justify } = style;
+  if (center === true) return 'center';
+  if (justify === true) return 'justify';
+  return 'left';
+};
+
 const P = styled.p<TextProps>`
   color: ${p => p.theme.colors[p.color ?? 'text']};
-  text-align: ${p => (p.center ? 'center' : 'left')};
+  text-align: left;
+  text-align: ${p => getTextAlign(p)};
+  font-size: 16px;
+  line-height: 24xpx;
+  font-size: 16px;
+  line-height: 24px;
+
   ${p => (p.margin !== undefined ? `margin: ${p.margin}px` : '')};
 
   font-weight: ${p => (p.bold ? 'bold' : 300)};
-  font-size: 16px;
-  line-height: 24px;
   letter-spacing: 0.1px;
 
   a {

@@ -4,7 +4,7 @@ interface FormContext<T> {
   data: T | undefined
   setData: (data: T) => any
   validate: () => Promise<ValidationResult>
-  save: (data: T) => any
+  submit: () => any
   validationResult: ValidationResult | undefined
 }
 

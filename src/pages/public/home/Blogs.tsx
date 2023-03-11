@@ -10,6 +10,7 @@ import Text from 'components/Text';
 import Center from 'components/Center';
 import Button from 'components/Button';
 import styled from 'styled-components';
+import Spinner from 'components/Spinner';
 import useBlogs from './useBlogs';
 
 const Blogs = () => {
@@ -17,11 +18,15 @@ const Blogs = () => {
   return (
     <Jumbotron fill="bible-study" header="Onze inzichten in blogs">
       <Block padding={false}>
-        <Columns gap={100} count={2}>
+        <Center>
+          <Spinner size="normal" color="background" />
+        </Center>
+
+        <Columns className="columns" gap={100} count={2}>
           {blogs?.map(blog => <Blog key={blog.id} blog={blog} />)}
         </Columns>
         <Center>
-          <Button label="Lees hier alle blogs" href="/blogs" color="green" />
+          {blogs && <Button label="Lees hier alle blogs" href="/blogs" color="green" />}
         </Center>
       </Block>
     </Jumbotron>

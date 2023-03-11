@@ -9,21 +9,25 @@ interface TextBoxProps<T> {
   value: string | undefined | null,
   context?: Context<FormContext<T>>
   onChange: (value: string) => any
-  tabIndex?: number
+  tabIndex?: number,
+  showErrors?: boolean
 }
 
-const TextBox = (props: TextBoxProps<unknown>) => {
-  const { property, placeholder, value, context, onChange, tabIndex } = props;
+const TextBox = (props: TextBoxProps<any>) => {
+  const { property, placeholder, value, context, onChange, showErrors, tabIndex } = props;
   const errors = useErrors(context, property);
-  console.log(errors === null);
-
+  const hasErrors = errors.length !== 0;
   return (
-    <Input
-      onChange={event => onChange(event.target.value)}
-      placeholder={placeholder}
-      value={value ?? ''}
-      tabIndex={tabIndex}
-    />
+    <div>
+      <Input
+        onChange={event => onChange(event.target.value)}
+        placeholder={placeholder}
+        value={value ?? ''}
+        tabIndex={tabIndex}
+        hasError={hasErrors}
+      />
+      {showErrors !== false && hasErrors && <ErrorMessage>{errors[0].message}</ErrorMessage>}
+    </div>
   );
 };
 
@@ -33,11 +37,16 @@ const useErrors = (context: Context<FormContext<unknown>> | undefined, property:
   return validationResult?.errors?.filter(e => e.property === property) ?? [];
 };
 
-const Input = styled.input`
+const ErrorMessage = styled.div`
+  color: ${p => p.theme.colors.error};
+  font-size: 12px;
+`;
+
+const Input = styled.input<{ hasError: boolean }>`
   width: 100%;
-  height: 39px;
-  border: 1px solid ${p => p.theme.colors.gray};
-  color: ${p => p.theme.colors.text};
+  height: 40px;
+  border: 1px solid ${p => (p.hasError ? p.theme.colors.error : p.theme.colors.gray)};
+  color: ${p => (p.hasError ? p.theme.colors.error : p.theme.colors.text)};
   box-sizing: border-box;
   border-radius: 8px;
   padding: 4px 16px;
@@ -46,12 +55,12 @@ const Input = styled.input`
 
   &:focus {
     outline: none;
-    border: 1px solid ${p => p.theme.colors.blue};
-    color: ${p => p.theme.colors.blue};
+    border: 1px solid ${p => (p.hasError ? p.theme.colors.error : p.theme.colors.blue)};
+    color: ${p => (p.hasError ? p.theme.colors.error : p.theme.colors.blue)};
   }
 
   &::placeholder {
-    color: ${p => p.theme.colors.gray};
+    color: ${p => (p.hasError ? p.theme.colors.error : p.theme.colors.gray)};
   }
 `;
 

@@ -6,7 +6,8 @@ export const defaultTheme: DefaultTheme = {
     green: '#42ac49',
     gray: '#a8a8a8',
     text: '#3d3d3d',
-    background: '#ffffff'
+    background: '#ffffff',
+    error: '#cc0000'
   },
   screens: {
     large: 1512,

@@ -9,6 +9,7 @@ const SubscribeNewsletterForm = () => {
   const initialValue = { name: '', email: '' };
 
   const onSave = (value: SubscribeNewsletter) => {
+    if (!value) return;
     console.log(value);
   };
 

@@ -31,11 +31,11 @@ const SubMenu = (props: Props) => {
 const Container = styled.div`
   overflow: hidden;
   transition: max-height 0.2s linear 0s;
-  z-index: 2;
+  z-index: 1000;
   left: -16px;
   position: absolute;
   max-height: 0;
-  top: 60px;
+  top: 60px;;
 `;
 
 const Inner = styled.div`

@@ -15,7 +15,7 @@ const Jumbotron: FC<PropsWithChildren<JumbotronProps>> = (props) => {
         <Handle>{header}</Handle>
         <Side />
       </Header>
-      <Children>{children}</Children>
+      <Children className="jumbotron">{children}</Children>
     </>
   );
 };
@@ -39,22 +39,27 @@ const Side = styled.div`
 `;
 
 const Handle = styled.div`
-  background-color: ${p => p.theme.colors.blue};
+  background: ${p => p.theme.colors.blue};
   color: ${p => p.theme.colors.background};
   border-radius: 16px 16px 0 0;
-  flex: 0 0 412px;
+  flex: 0 0 312px;
   text-align: center;
   line-height: 45px;
   font-size: 16px;
   font-weight: bold;
   height: 45px;
+
+  @media (min-width: ${p => p.theme.screens.small}px) {
+    flex: 0 0 412px;
+  }
 `;
 
 const Children = styled.div`
-  background-color: ${p => p.theme.colors.blue};
+  background: ${p => p.theme.colors.blue};
   color: ${p => p.theme.colors.background};
   width: 100%;
   padding: 60px 0;
+  box-sizing: border-box;
 `;
 
 export default Jumbotron;

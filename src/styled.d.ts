@@ -13,7 +13,8 @@ declare module 'styled-components' {
       green: string
       text: string
       gray: string
-      background: string
+      background: string,
+      error: string
     }
     screens: {
       small: number

@@ -28,7 +28,7 @@ function Form<T>(props: PropsWithChildren<FormProps<T>>) {
     return result;
   };
 
-  const onSave = async () => {
+  const submit = async () => {
     if (!data) return false;
     const result = await validate();
     setValidationResult(result);
@@ -36,7 +36,7 @@ function Form<T>(props: PropsWithChildren<FormProps<T>>) {
     return false;
   };
 
-  const state = { data, validate, setData, save: onSave, validationResult };
+  const state = { data, validate, setData, submit, validationResult };
   return (
     <FormProvider state={state} context={context}>
       {children}

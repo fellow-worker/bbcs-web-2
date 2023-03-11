@@ -55,17 +55,23 @@ const Menu = (props: Props) => {
 
 const Container = styled.div`
   background-color: ${p => p.theme.colors.background};
-  flex-grow: 3;
-  flex-shrink: 3;
+  flex-grow: 0;
+  flex-shrink: 0;
   flex-basis: auto;
-  display: flex;
+  display: none;
   min-width: 90px;
-  max-width: 150px;
-
   line-height: 60px;
   font-size: 16px;
   height: 60px;
   user-select: none;
+
+  @media (min-width: ${p => p.theme.screens.small}px) {
+    display: flex;
+  }
+
+  @media (min-width: 900px) {
+    padding: 0 10px;
+  }
 `;
 
 const Absolute = styled.div`

@@ -1,6 +1,7 @@
 import React, { FC, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 import Text from 'components/Text';
+import Paragraph from 'components/Paragraph';
 
 interface Props {
   header: string,
@@ -19,7 +20,7 @@ const Step: FC<PropsWithChildren<Props>> = (props) => {
       <Text variant="p" color="blue" bold>
         {header}
       </Text>
-      {children}
+      <Paragraph>{children}</Paragraph>
     </Container>
   );
 };
@@ -29,6 +30,16 @@ const Container = styled.div`
   flex-flow: column;
   justify-content: center;
   justify-items: center;
+  padding-top: 60px;
+
+  p {
+    font-size: 16px !important;
+    line-height: 24px;
+  }
+
+  @media (min-width: ${p => p.theme.screens.small}px) {
+    padding-top: 20px;
+  }
 `;
 
 const Icon = styled.div`
@@ -50,7 +61,14 @@ const IconContainer = styled.div`
   justify-content: center;
   align-items: center;
   align-content: center;
-  padding-bottom: 60px;
+  padding-bottom: 20px;
+  height: 145px;
+
+  @media (min-width: ${p => p.theme.screens.small}px) {
+    padding-bottom: 60px;
+    padding-top: 0;
+  }
+
 `;
 
 export default Step;

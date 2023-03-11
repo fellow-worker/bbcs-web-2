@@ -9,14 +9,15 @@ const Footer = () => {
   return (
     <Container>
       <Box>
-        <div>
-          © 2011-{year} {config.name}, Alle rechten voorbehouden.
-        </div>
-        <div>
-          <Link to="/info/gebruikersvoorwaarden">Gebruikersvoorwaarden</Link>
-          &nbsp;/&nbsp;
-          <Link to="/info/privacy">Privacy</Link>
-        </div>
+        <InfoBox align="left">
+          <div>© 2011-{year} {config.name}&nbsp;</div>
+          <div>Alle rechten voorbehouden.</div>
+        </InfoBox>
+        <InfoBox align="right">
+          <div><Link to="/info/gebruikersvoorwaarden">Gebruikersvoorwaarden</Link></div>
+          <Separate> / </Separate>
+          <div><Link to="/info/privacy">Privacy</Link></div>
+        </InfoBox>
       </Box>
     </Container>
   );
@@ -27,29 +28,15 @@ const Container = styled.div`
   justify-content: center;
   justify-items: center;
   background-color: ${p => p.theme.colors.gray};
-  height: 56px;
   color: ${p => p.theme.colors.background};
-  line-height: 56px;
-  font-weight: 300;
-  font-size: 14px;
 `;
 
 const Box = styled.div`
-  display: flex;
   max-width: ${p => p.theme.maxWidth}px;
   width: 100%;
-
-  div:first-child {
-    text-align: left;
-    flex: 1 1 auto;
-    padding-left: 50px;
-  }
-
-  div:last-child {
-    text-align: right;
-    flex: 1 1 auto;
-    padding-right: 50px;
-  }
+  box-sizing: border-box;
+  padding-top: 20px;
+  line-height: 16px;
 
   a {
     color: ${p => p.theme.colors.background};
@@ -58,6 +45,41 @@ const Box = styled.div`
 
   a:hover {
     text-shadow: 0 0 .9px currentColor, 0 0 .9px currentColor, 0 0 .9px currentColor;
+  }
+
+  @media (min-width: ${p => p.theme.screens.small}px) {
+    display: flex;
+    flex-direction: row;
+  }
+`;
+
+const InfoBox = styled.div<{align: 'left' | 'right'}>`
+  text-align: center;
+  padding-bottom: 20px;
+  font-weight: 300;
+  font-size: 14px;
+
+  @media (min-width: ${p => p.theme.screens.small}px) {
+    display: flex;
+    flex: 0 0 50%;
+    max-width: 525px;
+    justify-content: ${p => (p.align === 'left' ? 'flex-start' : 'flex-end')};
+    padding-left: ${p => (p.align === 'left' ? 25 : 0)}px;
+    padding-right: ${p => (p.align === 'left' ? 0 : 25)}px;
+    box-sizing: border-box;
+  }
+
+  @media (min-width: ${p => p.theme.screens.medium}px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+`;
+
+const Separate = styled.div`
+  padding: 0 8px;
+  display: none;
+  @media (min-width: ${p => p.theme.screens.small}px) {
+    display: inherit;
   }
 `;
 

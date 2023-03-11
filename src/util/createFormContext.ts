@@ -8,7 +8,7 @@ function createFormContext<T>() {
     setData: () => undefined,
     validate: async () => ({ valid: false, errors: [] } as ValidationResult),
     validationResult: undefined,
-    save: async () => false,
+    submit: async () => false,
   };
   return React.createContext<FormContext<T>>(form);
 }
